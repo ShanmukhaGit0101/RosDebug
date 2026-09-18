@@ -38,7 +38,7 @@ cd ~/ros_ws
 
 ```bash
 cd ~/ros_ws/src
-ros2 pkg create --build-type ament_python workshop_demo --dependencies rclpy std_msgs
+ros2 pkg create --build-type ament_python workshop_demo 
 ```
 
 ---
