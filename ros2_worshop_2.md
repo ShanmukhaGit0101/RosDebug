@@ -213,3 +213,29 @@ source /opt/ros/jazzy/setup.bash
 ```bash
 source ~/amr_workshop/install/setup.bash
 ```
+
+# Part 3 — ROS 2 System Inspection
+
+## 1. List Active ROS 2 Nodes
+
+Display all currently running ROS 2 nodes.
+
+```bash
+ros2 node list
+```
+
+## 2. List Available ROS 2 Topics
+
+Display all currently available ROS 2 topics.
+
+```bash
+ros2 topic list
+```
+
+## 3. View TF Frame Tree
+
+Generate the TF frame tree of the robot.
+
+```bash
+ros2 run tf2_tools view_frames
+```
