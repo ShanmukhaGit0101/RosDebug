@@ -118,10 +118,9 @@ sudo apt install ros-jazzy-teleop-twist-keyboard
 
 # Part 2 — Start the AMR Simulation
 
+## Terminal 1 — Launch the AMR Simulation
 
-## Terminal 2 — Launch the AMR Simulation
-
-Open another terminal.
+Open a terminal.
 
 ### Source ROS 2 Jazzy
 
@@ -145,7 +144,7 @@ Leave this terminal running.
 
 ---
 
-## Terminal 3 — Start the AMR Handler
+## Terminal 2 — Start the AMR Handler
 
 Open another terminal.
 
@@ -171,20 +170,46 @@ Leave this terminal running.
 
 ---
 
-# Terminal Summary
+## Terminal 3 — Start Keyboard Teleoperation
 
-At this stage, you should have the following terminals running:
+Open another terminal.
 
-| Terminal       | Command                                     | Purpose                   |
-| -------------- | ------------------------------------------- | ------------------------- |
-| **Terminal 2** | `ros2 launch amr_gazebo gazebo.launch.py`   | Starts the AMR simulation |
-| **Terminal 3** | `ros2 launch amr_handler handler.launch.py` | Starts the AMR handler    |
-
-For every new ROS 2 terminal, remember to source both:
+### Source ROS 2 Jazzy
 
 ```bash
 source /opt/ros/jazzy/setup.bash
+```
+
+### Source the Workshop Workspace
+
+```bash
 source ~/amr_workshop/install/setup.bash
 ```
 
-The workspace setup is now complete and the AMR simulation can be started.
+### Start Teleoperation
+
+```bash
+ros2 run teleop_twist_keyboard teleop_twist_keyboard
+```
+
+Use the keys shown in the terminal to control the AMR.
+
+---
+
+# Terminal Summary
+
+| Terminal       | Command                                                | Purpose                             |
+| -------------- | ------------------------------------------------------ | ----------------------------------- |
+| **Terminal 1** | `ros2 launch amr_gazebo gazebo.launch.py`              | Launches the AMR simulation         |
+| **Terminal 2** | `ros2 launch amr_handler handler.launch.py`            | Starts the AMR handler              |
+| **Terminal 3** | `ros2 run teleop_twist_keyboard teleop_twist_keyboard` | Controls the AMR using the keyboard |
+
+For every new ROS 2 terminal, source both:
+
+```bash
+source /opt/ros/jazzy/setup.bash
+```
+
+```bash
+source ~/amr_workshop/install/setup.bash
+```
