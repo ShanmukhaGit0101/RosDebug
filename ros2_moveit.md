@@ -8,10 +8,10 @@ This section prepares the ROS 2 workspace, downloads the workshop repository, bu
 
 ## 1. Create the Workshop Workspace
 
-Create the `amr_workshop` workspace and its `src` directory.
+Create the `arm_workshop` workspace and its `src` directory.
 
 ```bash
-mkdir -p ~/amr_workshop/src
+mkdir -p ~/arm_workshop/src
 ```
 
 ## 2. Enter the `src` Directory
@@ -19,7 +19,7 @@ mkdir -p ~/amr_workshop/src
 ROS 2 packages are stored inside the `src` directory of the workspace.
 
 ```bash
-cd ~/amr_workshop/src
+cd ~/arm_workshop/src
 ```
 
 ## 3. Clone the Workshop Repository
@@ -33,7 +33,7 @@ git clone https://github.com/anyarobotics/ros_workshop.git
 The repository will be located at:
 
 ```text
-~/amr_workshop/src/ros_workshop
+~/arm_workshop/src/ros_workshop
 ```
 
 ## 4. Remove the Existing `workshop_demo` Package
@@ -41,7 +41,7 @@ The repository will be located at:
 We will create our own `workshop_demo` package later in the workshop.
 
 ```bash
-rm -rf ~/amr_workshop/src/ros_workshop/workshop_demo
+rm -rf ~/arm_workshop/src/ros_workshop/workshop_demo
 ```
 
 ## 5. Go to the Workspace Root
@@ -49,7 +49,7 @@ rm -rf ~/amr_workshop/src/ros_workshop/workshop_demo
 Return to the workspace root before building.
 
 ```bash
-cd ~/amr_workshop
+cd ~/arm_workshop
 ```
 
 > **Important:** Run `colcon build` from the workspace root.
@@ -75,7 +75,7 @@ colcon build --symlink-install
 Source the workspace after the build completes.
 
 ```bash
-source ~/amr_workshop/install/setup.bash
+source ~/arm_workshop/install/setup.bash
 ```
 
 ## 9. Install Keyboard Teleoperation
@@ -94,9 +94,9 @@ sudo apt install ros-jazzy-teleop-twist-keyboard
 
 ---
 
-# Part 2 — Start the AMR Simulation
+# Part 2 — Start the arm Simulation
 
-## Terminal 1 — Launch the AMR Simulation
+## Terminal 1 — Launch the arm Simulation
 
 Open a new terminal.
 
@@ -109,18 +109,18 @@ source /opt/ros/jazzy/setup.bash
 ### Source the Workshop Workspace
 
 ```bash
-source ~/amr_workshop/install/setup.bash
+source ~/arm_workshop/install/setup.bash
 ```
 
-### Launch the AMR Simulation
+### Launch the arm Simulation
 
 ```bash
-ros2 launch amr_gazebo gazebo.launch.py
+ros2 launch arm_gazebo gazebo.launch.py
 ```
 
 Leave this terminal running.
 
-## Terminal 2 — Start the AMR Handler
+## Terminal 2 — Start the arm Handler
 
 Open another terminal.
 
@@ -133,13 +133,13 @@ source /opt/ros/jazzy/setup.bash
 ### Source the Workshop Workspace
 
 ```bash
-source ~/amr_workshop/install/setup.bash
+source ~/arm_workshop/install/setup.bash
 ```
 
-### Launch the AMR Handler
+### Launch the arm Handler
 
 ```bash
-ros2 launch amr_handler handler.launch.py
+ros2 launch arm_handler handler.launch.py
 ```
 
 Leave this terminal running.
@@ -157,7 +157,7 @@ source /opt/ros/jazzy/setup.bash
 ### Source the Workshop Workspace
 
 ```bash
-source ~/amr_workshop/install/setup.bash
+source ~/arm_workshop/install/setup.bash
 ```
 
 ### Start Teleoperation
@@ -166,15 +166,15 @@ source ~/amr_workshop/install/setup.bash
 ros2 run teleop_twist_keyboard teleop_twist_keyboard
 ```
 
-Use the keys shown in the terminal to control the AMR.
+Use the keys shown in the terminal to control the arm.
 
 ## Terminal Summary
 
 | Terminal | Command | Purpose |
 |---|---|---|
-| **Terminal 1** | `ros2 launch amr_gazebo gazebo.launch.py` | Launches the AMR simulation |
-| **Terminal 2** | `ros2 launch amr_handler handler.launch.py` | Starts the AMR handler |
-| **Terminal 3** | `ros2 run teleop_twist_keyboard teleop_twist_keyboard` | Controls the AMR |
+| **Terminal 1** | `ros2 launch arm_gazebo gazebo.launch.py` | Launches the arm simulation |
+| **Terminal 2** | `ros2 launch arm_handler handler.launch.py` | Starts the arm handler |
+| **Terminal 3** | `ros2 run teleop_twist_keyboard teleop_twist_keyboard` | Controls the arm |
 
 For every new ROS 2 terminal, source both:
 
@@ -183,7 +183,7 @@ source /opt/ros/jazzy/setup.bash
 ```
 
 ```bash
-source ~/amr_workshop/install/setup.bash
+source ~/arm_workshop/install/setup.bash
 ```
 
 ---
