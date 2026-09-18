@@ -118,19 +118,6 @@ sudo apt install ros-jazzy-teleop-twist-keyboard
 
 # Part 2 — Start the AMR Simulation
 
-The simulation requires separate terminals for the different ROS 2 processes.
-
-## Terminal 1 — Start Gazebo
-
-Open a new terminal and start Gazebo:
-
-```bash
-gazebo
-```
-
-Leave this terminal running.
-
----
 
 ## Terminal 2 — Launch the AMR Simulation
 
