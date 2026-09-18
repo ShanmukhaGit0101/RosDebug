@@ -1,4 +1,4 @@
-# Part 3 — MoveIt 2 Installation and Arm Workspace Setup
+# MoveIt 2 Installation and Arm Workspace Setup
 
 This section installs MoveIt 2 and creates a separate workspace for the robot arm.
 
