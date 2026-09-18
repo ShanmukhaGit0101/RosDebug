@@ -177,7 +177,6 @@ At this stage, you should have the following terminals running:
 
 | Terminal       | Command                                     | Purpose                   |
 | -------------- | ------------------------------------------- | ------------------------- |
-| **Terminal 1** | `gazebo`                                    | Starts Gazebo             |
 | **Terminal 2** | `ros2 launch amr_gazebo gazebo.launch.py`   | Starts the AMR simulation |
 | **Terminal 3** | `ros2 launch amr_handler handler.launch.py` | Starts the AMR handler    |
 
