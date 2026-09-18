@@ -162,7 +162,7 @@ Open the **MoveIt Controllers** section.
 
 ## 10. Select the Configuration Package Location
 
-In the **Configuration Files** section, select the `ros_workshop` source directory.
+In the **Configuration Files** section, 
 
 Set the configuration package location to:
 
