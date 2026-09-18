@@ -1,4 +1,4 @@
-MoveIt 2 Installation and Arm Workspace Setup
+# Part 3 — MoveIt 2 Installation and Arm Workspace Setup
 
 This section installs MoveIt 2 and creates a separate workspace for the robot arm.
 
@@ -92,20 +92,21 @@ In the MoveIt Setup Assistant GUI:
 
 1. Select **Create New MoveIt Configuration Package**.
 2. Click **Browse**.
-3. Navigate to:
+3. Navigate to the robot Xacro file:
 
 ```text
-ir52c/urdf/urdf.xml.xacro
+~/arm_workspace/src/ros_workshop/IR52C_description/urdf/arm.urdf.xacro
 ```
 
-4. Select `urdf.xml.xacro`.
+4. Select `arm.urdf.xacro`.
 5. Click **Load Files**.
 
 ## 4. Generate the Self-Collision Matrix
 
 Open the **Self-Collisions** section.
 
-Click **Generate Collision Matrix** and wait for the matrix to be generated.
+1. Click **Generate Collision Matrix**.
+2. Wait for the collision matrix to be generated.
 
 ## 5. Add a Virtual Joint
 
@@ -120,7 +121,7 @@ Open the **Virtual Joints** section and click **Add Virtual Joint**.
 
 Save the virtual joint.
 
-## 6. Create the Planning Group
+## 6. Create a Planning Group
 
 Open **Planning Groups** and click **Add Group**.
 
@@ -157,184 +158,62 @@ Open the **ROS 2 Controllers** section.
 Open the **MoveIt Controllers** section.
 
 1. Click **Auto Add**.
-2. Confirm the generated MoveIt controller configuration.# Part 3 — MoveIt 2 Installation and Arm Workspace Setup
+2. Confirm the generated MoveIt controller configuration.
 
-### 1. Source ROS 2 Jazzy
+## 10. Select the Configuration Package Location
 
-```bash
-source /opt/ros/jazzy/setup.bash
+In the **Configuration Files** section, select the `ros_workshop` source directory.
+
+Set the configuration package location to:
+
+```text
+~/arm_workspace/src/ros_workshop/moveit_config
 ```
 
-### 2. Update package lists
+The MoveIt Setup Assistant will create the `moveit_config` package at this location.
 
-```bash
-sudo apt update
-```
+Click **Generate Package** to create the MoveIt configuration.
 
-### 3. Install MoveIt 2
+> **Note:** Do not select the `arm_workspace` root. The generated package should be placed inside `arm_workspace/src/ros_workshop`.
 
-Install MoveIt 2 for ROS 2 Jazzy.
+## 11. Close MoveIt Setup Assistant
 
-```bash
-sudo apt install ros-jazzy-moveit
-```
+After the configuration package has been generated successfully, close the MoveIt Setup Assistant.
 
-### 4. Create the Arm Workspace
+## 12. Go to the Arm Workspace
 
-Create the workspace and its `src` directory.
-
-```bash
-mkdir -p ~/arm_workspace/src
-```
-
-### 5. Go to the `src` Directory
-
-```bash
-cd ~/arm_workspace/src
-```
-
-### 6. Clone the Workshop Repository
-
-Clone the workshop repository into the arm workspace.
-
-```bash
-git clone https://github.com/anyarobotics/ros_workshop.git
-```
-
-### 7. Go to the Workspace Root
+Open a terminal and go to the arm workspace.
 
 ```bash
 cd ~/arm_workspace
 ```
 
-### 8. Build the Workspace
+## 13. Source ROS 2 Jazzy
 
-Build the packages using `colcon`.
+```bash
+source /opt/ros/jazzy/setup.bash
+```
+
+## 14. Build the Workspace
+
+Build the workspace again to include the newly generated MoveIt package.
 
 ```bash
 colcon build --symlink-install
 ```
 
-### 9. Source the Workspace
+## 15. Source the Workspace
 
-Load the newly built packages into the current terminal.
-
-```bash
-source ~/arm_workspace/install/setup.bash
-```
-### 10. Open MoveIt Setup Assistant
-
-Launch the MoveIt Setup Assistant to create the MoveIt configuration for the robot.
-
-```bash
-ros2 launch moveit_setup_assistant setup_assistant.launch.py
-```
-
-### 10. Set the Qt Platform
-
-Set the Qt platform to `xcb` before launching the MoveIt Setup Assistant.
+Source the newly built workspace.
 
 ```bash
 source ~/arm_workspace/install/setup.bash
-source /opt/ros/jazzy/setup.bash
-export QT_QPA_PLATFORM=xcb
 ```
 
-### 11. Open MoveIt Setup Assistant
+## 16. Launch the MoveIt Demo
 
-Launch the MoveIt Setup Assistant.
+Launch the generated MoveIt configuration.
 
 ```bash
-ros2 launch moveit_setup_assistant setup_assistant.launch.py
+ros2 launch moveit_config demo.launch.py
 ```
-
-### 12. Load the Robot Xacro
-
-In the MoveIt Setup Assistant GUI:
-
-1. Select **Create New MoveIt Configuration Package**.
-2. Click **Browse**.
-3. Navigate to the robot Xacro file:
-
-```text
-arm_workshop/src/ros_workshop/IR52C_description/urdf/arm.urdf.xacro
-```
-
-4. Select `arm.urdf.xacro`.
-5. Click **Load Files**.
-
-### 13. Generate the Self-Collision Matrix
-
-In the **Self-Collisions** section:
-
-1. Click **Generate Collision Matrix**.
-2. Wait for the collision matrix to be generated.
-
-### 14. Add a Virtual Joint
-
-Go to the **Virtual Joints** section and click **Add Virtual Joint**.
-
-Set the following values:
-
-| Setting            | Value           |
-| ------------------ | --------------- |
-| Virtual Joint Name | `virtual_joint` |
-| Child Link         | `base_link`     |
-| Parent Frame       | `world`         |
-| Joint Type         | `fixed`         |
-
-Save the virtual joint.
-
-### 15. Create a Planning Group
-
-Go to **Planning Groups** and click **Add Group**.
-
-Set:
-
-* **Group Name:** `arm`
-* **Kinematic Solver:** `KDL Kinematics Plugin`
-
-Under **Add Kinematic Chain**, add the kinematic chain for the arm.
-
-Then click **Save Group**.
-
-### 16. Create Robot Poses
-
-Go to **Robot Poses**.
-
-Click **Add Pose** and use the sliders to move the robot to a random configuration.
-
-Create two poses:
-
-* `home`
-* `ready`
-
-Use the sliders to set the joint positions for each pose, then save each pose.
-
-### 17. Configure ROS 2 Controllers
-
-Go to the **ROS 2 Controllers** section.
-
-1. Click **Auto Add** to automatically add the controller.
-2. Select the **Joint Trajectory Controller**.
-3. Confirm the generated controller configuration.
-
-### 18. Configure MoveIt Controllers
-
-Go to the **MoveIt Controllers** section.
-
-1. Click **Auto Add**.
-2. This automatically adds the MoveIt controller configuration for the joint trajectory controller.
-3. Confirm the generated configuration.
-
-## 4. Select the Configuration Package Location
-
-In the **Configuration Files** section, select a location inside your home directory.
-
-Create the configuration folder with the name:
-
-```text
-moveit_config_
-```
-
-> **Note:** Do **not** select your current `arm_workspace` location. The MoveIt Setup Assistant generates MoveIt packages in the selected location, and using a workspace that already contains ROS 2 packages can cause package conflicts or errors.
