@@ -517,3 +517,14 @@ Go to the **MoveIt Controllers** section.
 2. This automatically adds the MoveIt controller configuration for the joint trajectory controller.
 3. Confirm the generated configuration.
 
+## 4. Select the Configuration Package Location
+
+In the **Configuration Files** section, select a location inside your home directory.
+
+Create the configuration folder with the name:
+
+```text
+moveit_config_
+```
+
+> **Note:** Do **not** select your current `arm_workspace` location. The MoveIt Setup Assistant generates MoveIt packages in the selected location, and using a workspace that already contains ROS 2 packages can cause package conflicts or errors.
