@@ -1,204 +1,204 @@
 # Part 1 — ROS 2 Workshop Setup
 
-### 1. Create the workspace
+This section prepares the ROS 2 workspace, downloads the workshop repository, builds the packages, and starts the AMR simulation.
 
-Create the `amr_workshop` workspace and its `src` folder.
+> **Prerequisite:** ROS 2 Jazzy should already be installed on the system.
+
+---
+
+## 1. Create the Workshop Workspace
+
+Create the `amr_workshop` workspace and its `src` directory.
 
 ```bash
 mkdir -p ~/amr_workshop/src
 ```
 
-### 2. Go to the `src` folder
+---
 
-ROS 2 packages will be created inside the `src` folder.
+## 2. Enter the `src` Directory
+
+ROS 2 packages are stored inside the `src` directory of the workspace.
 
 ```bash
 cd ~/amr_workshop/src
 ```
 
-### 3. Clone the workshop repository
+---
 
-Clone the workshop files from GitHub.
+## 3. Clone the Workshop Repository
+
+Clone the workshop repository from GitHub.
 
 ```bash
 git clone https://github.com/anyarobotics/ros_workshop.git
 ```
 
-### 4. Remove the existing `workshop_demo`
+After cloning, the repository will be located at:
 
-We will create our own `workshop_demo` package later, so remove the copy from the cloned repository.
+```text
+~/amr_workshop/src/ros_workshop
+```
+
+---
+
+## 4. Remove the Existing `workshop_demo` Package
+
+The repository contains an existing `workshop_demo` package. We will create our own version later in the workshop, so remove the existing copy.
 
 ```bash
 rm -rf ~/amr_workshop/src/ros_workshop/workshop_demo
 ```
 
-### 5. Go to the workspace root
+---
 
-`colcon build` should be run from the workspace root, not from the `src` folder.
+## 5. Go to the Workspace Root
+
+Return to the workspace root before building.
 
 ```bash
 cd ~/amr_workshop
 ```
 
-### 6. Source ROS 2 Jazzy
+> **Important:** `colcon build` should normally be run from the workspace root, not from the `src` directory.
 
-This loads the ROS 2 Jazzy environment into the current terminal.
+---
+
+## 6. Source ROS 2 Jazzy
+
+Load the ROS 2 Jazzy environment into the current terminal.
 
 ```bash
 source /opt/ros/jazzy/setup.bash
 ```
 
-### 7. Build the workspace
+---
 
-`colcon` is the ROS 2 build tool. Run it from `~/amr_workshop`.
+## 7. Build the Workspace
+
+Build all packages in the workshop workspace using `colcon`.
 
 ```bash
 colcon build --symlink-install
 ```
 
-### 8. Source the workspace
+The `--symlink-install` option is useful during development because changes to Python files can be reflected without reinstalling the files each time.
 
-This makes the packages built inside `amr_workshop` available to the current terminal.
+---
+
+## 8. Source the Workshop Workspace
+
+After the build completes successfully, source the workspace.
 
 ```bash
 source ~/amr_workshop/install/setup.bash
 ```
 
-### 9. Install Teleop Keyboard
+This makes the packages built inside `amr_workshop` available to the current terminal.
+
+---
+
+## 9. Install Keyboard Teleoperation
 
 Install the ROS 2 keyboard teleoperation package.
+
+First update the package lists:
 
 ```bash
 sudo apt update
 ```
 
+Then install the package:
+
 ```bash
 sudo apt install ros-jazzy-teleop-twist-keyboard
 ```
 
-### 10. Launch Gazebo
+---
 
-Start Gazebo.
+# Part 2 — Start the AMR Simulation
+
+The simulation requires separate terminals for the different ROS 2 processes.
+
+## Terminal 1 — Start Gazebo
+
+Open a new terminal and start Gazebo:
 
 ```bash
 gazebo
 ```
 
-### 11. Source ROS 2 Jazzy
+Leave this terminal running.
 
-Open a new terminal and source ROS 2 Jazzy.
+---
+
+## Terminal 2 — Launch the AMR Simulation
+
+Open another terminal.
+
+### Source ROS 2 Jazzy
 
 ```bash
 source /opt/ros/jazzy/setup.bash
 ```
 
-### 12. Source the workshop workspace
-
-Load the packages built in the workshop workspace.
+### Source the Workshop Workspace
 
 ```bash
 source ~/amr_workshop/install/setup.bash
 ```
 
-### 13. Launch the AMR simulation
-
-Launch the robot simulation in Gazebo.
+### Launch the AMR Simulation
 
 ```bash
 ros2 launch amr_gazebo gazebo.launch.py
 ```
 
-### 14. Start the AMR handler
+Leave this terminal running.
 
-Open another terminal and source ROS 2 Jazzy.
+---
+
+## Terminal 3 — Start the AMR Handler
+
+Open another terminal.
+
+### Source ROS 2 Jazzy
 
 ```bash
 source /opt/ros/jazzy/setup.bash
 ```
 
-### 15. Source the workshop workspace
+### Source the Workshop Workspace
 
 ```bash
 source ~/amr_workshop/install/setup.bash
 ```
 
-### 16. Launch the handler
-
-Start the AMR handler.
+### Launch the AMR Handler
 
 ```bash
 ros2 launch amr_handler handler.launch.py
 ```
-# Part 1 — ROS 2 Workshop Setup
 
-### 1. Create the workspace
+Leave this terminal running.
 
-Create the `amr_workshop` workspace and its `src` folder.
+---
 
-```bash
-mkdir -p ~/amr_workshop/src
-```
+# Terminal Summary
 
-### 2. Go to the `src` folder
+At this stage, you should have the following terminals running:
 
-ROS 2 packages will be created inside the `src` folder.
+| Terminal       | Command                                     | Purpose                   |
+| -------------- | ------------------------------------------- | ------------------------- |
+| **Terminal 1** | `gazebo`                                    | Starts Gazebo             |
+| **Terminal 2** | `ros2 launch amr_gazebo gazebo.launch.py`   | Starts the AMR simulation |
+| **Terminal 3** | `ros2 launch amr_handler handler.launch.py` | Starts the AMR handler    |
 
-```bash
-cd ~/amr_workshop/src
-```
-
-### 3. Clone the workshop repository
-
-Clone the workshop files from GitHub.
-
-```bash
-git clone https://github.com/anyarobotics/ros_workshop.git
-```
-
-### 4. Remove the existing `workshop_demo`
-
-We will create our own `workshop_demo` package later, so remove the copy from the cloned repository.
-
-```bash
-rm -rf ~/amr_workshop/src/ros_workshop/workshop_demo
-```
-
-### 5. Go to the workspace root
-
-`colcon build` should be run from the workspace root, not from the `src` folder.
-
-```bash
-cd ~/amr_workshop
-```
-
-### 6. Source ROS 2 Jazzy
-
-This loads the ROS 2 Jazzy environment into the current terminal.
+For every new ROS 2 terminal, remember to source both:
 
 ```bash
 source /opt/ros/jazzy/setup.bash
-```
-
-### 7. Build the workspace
-
-`colcon` is the ROS 2 build tool. Run it from `~/amr_workshop`.
-
-```bash
-colcon build --symlink-install
-```
-
-### 8. Source the workspace
-
-This makes the packages built inside `amr_workshop` available to the current terminal.
-
-```bash
 source ~/amr_workshop/install/setup.bash
 ```
 
-### Install Teleop Keyboard
-
-Install the ROS 2 keyboard teleoperation package.
-
-```bash
-sudo apt update
-sudo apt install ros-jazzy-teleop-twist-keyboard
+The workspace setup is now complete and the AMR simulation can be started.
