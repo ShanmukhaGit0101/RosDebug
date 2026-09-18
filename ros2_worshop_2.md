@@ -294,20 +294,31 @@ The resulting structure should be similar to:
 
 ```text
 amr_workshop/
+├── build/
+├── install/
+├── log/
 └── src/
     └── ros_workshop/
-        └── amr_handler/
-            ├── amr_handler/
-            │   ├── __init__.py
-            │   ├── diff_drive_node.py
-            │   ├── odometry_node.py
-            │   └── scripts/
-            │       └── circular_nav_node.py
-            │
-            ├── launch/
-            ├── resource/
-            ├── package.xml
-            └── setup.py
+        ├── amr_description/
+            |---
+        ├── amr_gazebo/
+            |---
+        ├── amr_handler/
+        │   ├── amr_handler/
+        │   │   ├── __init__.py
+        │   │   ├── diff_drive_node.py
+        │   │   ├── odometry_node.py
+        │   │   └── scripts/
+        │   │       └── circular_nav_node.py
+        │   │
+        │   ├── launch/
+        │   │   └── handler.launch.py
+        │   ├── resource/
+        │   │   └── amr_handler
+        │   ├── package.xml
+        │   ├── setup.py
+        │   └── setup.cfg
+
 ```
 
 > **Note:** The exact package structure may differ. Always check your existing `amr_handler` package before creating the new folder and file.
