@@ -101,3 +101,51 @@ ir52c/urdf/urdf.xml.xacro
 
 4. Select `urdf.xml.xacro`.
 5. Click **Load Files**.
+
+### 13. Generate the Self-Collision Matrix
+
+In the **Self-Collisions** section:
+
+1. Click **Generate Collision Matrix**.
+2. Wait for the collision matrix to be generated.
+
+### 14. Add a Virtual Joint
+
+Go to the **Virtual Joints** section and click **Add Virtual Joint**.
+
+Set the following values:
+
+| Setting            | Value           |
+| ------------------ | --------------- |
+| Virtual Joint Name | `virtual_joint` |
+| Child Link         | `base_link`     |
+| Parent Frame       | `world`         |
+| Joint Type         | `fixed`         |
+
+Save the virtual joint.
+
+### 15. Create a Planning Group
+
+Go to **Planning Groups** and click **Add Group**.
+
+Set:
+
+* **Group Name:** `arm`
+* **Kinematic Solver:** `KDL Kinematics Plugin`
+
+Under **Add Kinematic Chain**, add the kinematic chain for the arm.
+
+Then click **Save Group**.
+
+### 16. Create Robot Poses
+
+Go to **Robot Poses**.
+
+Click **Add Pose** and use the sliders to move the robot to a random configuration.
+
+Create two poses:
+
+* `home`
+* `ready`
+
+Use the sliders to set the joint positions for each pose, then save each pose.
