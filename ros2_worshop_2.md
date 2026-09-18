@@ -63,3 +63,11 @@ This makes the packages built inside `amr_workshop` available to the current ter
 ```bash
 source ~/amr_workshop/install/setup.bash
 ```
+
+### Install Teleop Keyboard
+
+Install the ROS 2 keyboard teleoperation package.
+
+```bash
+sudo apt update
+sudo apt install ros-jazzy-teleop-twist-keyboard
