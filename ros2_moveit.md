@@ -125,14 +125,20 @@ Save the virtual joint.
 
 Open **Planning Groups** and click **Add Group**.
 
-| Setting | Value |
-|---|---|
-| Group Name | `arm` |
+| Setting          | Value                   |
+| ---------------- | ----------------------- |
+| Group Name       | `arm`                   |
 | Kinematic Solver | `KDL Kinematics Plugin` |
 
-Under **Add Kinematic Chain**, add the kinematic chain for the arm.
+Under **Add Kinematic Chain**, set:
 
-Then click **Save Group**.
+| Setting      | Value       |
+| ------------ | ----------- |
+| Base Link    | `base_link` |
+| End Effector | `tool1`     |
+
+Add the kinematic chain and then click **Save Group**.
+
 
 ## 7. Create Robot Poses
 
