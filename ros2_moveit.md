@@ -63,3 +63,11 @@ Load the newly built packages into the current terminal.
 ```bash
 source ~/arm_workspace/install/setup.bash
 ```
+### 10. Open MoveIt Setup Assistant
+
+Launch the MoveIt Setup Assistant to create the MoveIt configuration for the robot.
+
+```bash
+ros2 launch moveit_setup_assistant setup_assistant.launch.py
+```
+
