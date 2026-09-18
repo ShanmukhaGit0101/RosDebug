@@ -425,6 +425,8 @@ ros2 launch moveit_setup_assistant setup_assistant.launch.py
 Set the Qt platform to `xcb` before launching the MoveIt Setup Assistant.
 
 ```bash
+source ~/arm_workspace/install/setup.bash
+source /opt/ros/jazzy/setup.bash
 export QT_QPA_PLATFORM=xcb
 ```
 
@@ -442,13 +444,13 @@ In the MoveIt Setup Assistant GUI:
 
 1. Select **Create New MoveIt Configuration Package**.
 2. Click **Browse**.
-3. Navigate to the robot's Xacro file:
+3. Navigate to the robot Xacro file:
 
 ```text
-ir52c/urdf/urdf.xml.xacro
+arm_workshop/src/ros_workshop/IR52C_description/urdf/arm.urdf.xacro
 ```
 
-4. Select `urdf.xml.xacro`.
+4. Select `arm.urdf.xacro`.
 5. Click **Load Files**.
 
 ### 13. Generate the Self-Collision Matrix
