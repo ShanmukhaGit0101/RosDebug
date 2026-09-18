@@ -149,3 +149,20 @@ Create two poses:
 * `ready`
 
 Use the sliders to set the joint positions for each pose, then save each pose.
+
+### 17. Configure ROS 2 Controllers
+
+Go to the **ROS 2 Controllers** section.
+
+1. Click **Auto Add** to automatically add the controller.
+2. Select the **Joint Trajectory Controller**.
+3. Confirm the generated controller configuration.
+
+### 18. Configure MoveIt Controllers
+
+Go to the **MoveIt Controllers** section.
+
+1. Click **Auto Add**.
+2. This automatically adds the MoveIt controller configuration for the joint trajectory controller.
+3. Confirm the generated configuration.
+
