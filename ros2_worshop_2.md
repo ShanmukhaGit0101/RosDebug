@@ -240,5 +240,204 @@ Generate the TF frame tree of the robot.
 ros2 run tf2_tools view_frames
 ```
 
+# Part 4 — Circular Navigation Using a Custom Twist Publisher
+
+## Task
+
+Create a **custom ROS 2 Python node** that makes the AMR move in a **circular path** by publishing `Twist` messages to the `/cmd_vel` topic.
+
+The new node should work with the existing `diff_drive_node` without modifying the existing drive or odometry nodes.
+
+---
+
+## 1. Understand the Requirement
+
+The custom node should:
+
+- Be written in Python.
+- Create a ROS 2 node.
+- Publish `geometry_msgs/msg/Twist` messages.
+- Publish the messages to `/cmd_vel`.
+- Continuously provide both linear and angular velocity.
+- Generate a circular motion for the AMR.
+
+Before creating any files, inspect the existing **AMR workspace architecture** and understand how the `amr_handler` package is organized.
+
+---
+
+## 2. Generate the Python Script Using Generative AI
+
+Use a Generative AI tool to generate a ROS 2 Python script for circular navigation.
+
+Your prompt should clearly specify that the node must:
+
+- Publish `Twist` messages.
+- Use the `/cmd_vel` topic.
+- Continuously publish velocity commands.
+- Use both linear and angular velocity.
+- Make a differential-drive AMR follow a circular path.
+- Be suitable for integration into the existing `amr_handler` package.
+
+Review the generated script and make sure you understand the purpose of the node, publisher, topic, message type, and velocity commands.
+
+> **Do not directly modify the existing `diff_drive_node.py` or `odometry_node.py`.**
+
+---
+
+## 3. Create the `scripts` Folder
+
+Inside the `amr_handler` Python package, create a folder named `scripts`.
+
+Create the new Python file inside this folder.
+
+The resulting structure should be similar to:
+
+```text
+amr_workshop/
+└── src/
+    └── ros_workshop/
+        └── amr_handler/
+            ├── amr_handler/
+            │   ├── __init__.py
+            │   ├── diff_drive_node.py
+            │   ├── odometry_node.py
+            │   └── scripts/
+            │       └── circular_nav_node.py
+            │
+            ├── launch/
+            ├── resource/
+            ├── package.xml
+            └── setup.py
+```
+
+> **Note:** The exact package structure may differ. Always check your existing `amr_handler` package before creating the new folder and file.
+
+Paste the generated circular-navigation script into `circular_nav_node.py`.
+
+---
+
+## 4. Register the New Node
+
+Before registering the node, inspect the package and identify how Python executables are configured.
+
+### If `setup.py` exists
+
+Add the new `circular_nav_node` as an executable under the existing `entry_points` section.
+
+Keep the existing:
+
+- `diff_drive_node`
+- `odometry_node`
+
+unchanged.
+
+### If `setup.py` does not exist
+
+Do **not** create one blindly.
+
+Check the existing package build configuration and follow the method already used by that package to register Python executables.
+
+The new node must be registered so that ROS 2 can discover and run it.
+
+---
+
+## 5. Check Dependencies
+
+Make sure the package has the required dependencies for the new node.
+
+The circular navigation node requires:
+
+```text
+rclpy
+geometry_msgs
+```
+
+Check the existing `package.xml` and add any missing dependencies using the same structure already used by the package.
+
+---
+
+## 6. Build the Workspace
+
+After creating the new node and registering it:
+
+1. Build the `amr_handler` package.
+2. Check that the build completes successfully.
+3. Source the updated workspace.
+4. Verify that the new `circular_nav_node` executable can be discovered.
+
+---
+
+# Part 5 — Initial Testing
+
+## Three-Terminal Test
+
+Before running the final experiment, test the existing AMR system using three terminals.
+
+### Terminal 1 — Gazebo
+
+Launch the AMR simulation.
+
+### Terminal 2 — AMR Handler
+
+Launch the AMR handler.
+
+### Terminal 3 — Teleoperation
+
+Start keyboard teleoperation and verify that the AMR can be controlled normally.
+
+After confirming that the system works correctly, stop all three terminals.
+
+---
+
+# Part 6 — Final Circular Navigation Experiment
+
+Start the complete system using **four terminals**.
+
+Run them in the following sequence:
+
+### Terminal 1 — Gazebo
+
+Launch the AMR simulation.
+
+### Terminal 2 — AMR Handler
+
+Launch the AMR handler.
+
+### Terminal 3 — Teleoperation
+
+Start keyboard teleoperation.
+
+### Terminal 4 — Circular Navigation
+
+Run the newly created `circular_nav_node`.
+
+The communication flow should be:
+
+```text
+circular_nav_node
+       |
+       | Twist
+       v
+   /cmd_vel
+       |
+       v
+diff_drive_node
+       |
+       v
+  AMR wheel motion
+       |
+       v
+ Circular Path
+```
+
+---
+
+## Expected Result
+
+The custom navigation node should continuously publish `Twist` commands through `/cmd_vel`.
+
+The existing `diff_drive_node` should receive these commands and control the AMR's wheel motion.
+
+The AMR should move continuously in a **circular path** while the Gazebo simulation, AMR handler, teleoperation, and circular navigation node are running.
 
 
